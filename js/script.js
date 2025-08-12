@@ -48,22 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-// Parallax effect for hero section
-function parallaxHero() {
-    const hero = document.querySelector('.hero-section');
-    if (hero) {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * 0.5; // Velocidade do parallax
-        
-        // Aplicar o efeito apenas no background
-        hero.style.backgroundPosition = `center ${rate}px`;
-    }
-}
-
-// Add scroll event listener for parallax (desktop only)
-if (window.matchMedia('(min-width: 901px)').matches) {
-    window.addEventListener('scroll', parallaxHero);
-}
+// Desativado: parallax no hero causava deslocamento em desktop em alguns browsers
 
     // Submissão do formulário
     const form = document.getElementById('free-trial-form');
