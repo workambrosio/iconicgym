@@ -100,13 +100,20 @@ nav a {
 /* Mobile menu toggle */
 .menu-toggle {
     display: none;
-    background: var(--cor-preto);
-    color: var(--cor-branco);
+    background: transparent;
     border: none;
-    padding: 0.6rem 0.9rem;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
+    width: 44px;
+    height: 44px;
+    padding: 0;
     cursor: pointer;
+}
+
+.menu-toggle .bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    margin: 5px auto;
+    background: var(--cor-preto);
 }
 
 .mobile-cta { display: none; }
@@ -137,9 +144,8 @@ nav a.active {
     display: flex;
     align-items: center;
     position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
-    background-size: cover;
-    background-attachment: fixed;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center / cover;
+    background-attachment: scroll; /* evita efeito de deslocamento rápido em desktop */
     color: var(--cor-branco);
     overflow: hidden;
 }

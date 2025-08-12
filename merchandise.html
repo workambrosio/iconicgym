@@ -13,7 +13,12 @@
             <a href="index.html">
                 <img src="images/logo.png" alt="Iconic Gym Logo" class="logo">
             </a>
-            <nav>
+            <button class="menu-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Abrir menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav id="primary-nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="acompanhamento.html">Acompanhamento</a></li>
@@ -22,6 +27,7 @@
                     <li><a href="testemunhos.html">Testemunhos</a></li>
                     <li><a href="merchandise.html" class="active">Merchandise</a></li>
                     <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li class="mobile-cta"><a href="form.html" class="cta-button" style="display:inline-block;">Treino Grátis</a></li>
                 </ul>
             </nav>
             <a href="form.html" class="cta-button">Treino Grátis</a>
@@ -41,7 +47,7 @@
                 <div class="card-grid merch-compact">
                     <!-- T-shirt -->
                     <div class="card">
-                        <img src="images/merch/Tshirt.png" alt="T-shirt ICONIC">
+                        <img src="images/merch/Tshirt.png?v=1" alt="T-shirt ICONIC" data-fallbacks="images/merch/tshirt.png, images/merch/TSHIRT.png">
                         <div class="card-content">
                             <h3 class="card-title">T-SHIRT ICONIC</h3>
                             <p class="price" style="font-weight: 600; font-size: 1.2rem; margin-bottom: 1rem;">1000€</p>
@@ -51,7 +57,7 @@
 
                     <!-- Shaker -->
                     <div class="card">
-                        <img src="images/merch/Shaker.png" alt="Shaker ICONIC">
+                        <img src="images/merch/Shaker.png?v=1" alt="Shaker ICONIC" data-fallbacks="images/merch/shaker.png, images/merch/SHAKER.png">
                         <div class="card-content">
                             <h3 class="card-title">SHAKER ICONIC</h3>
                             <p class="price" style="font-weight: 600; font-size: 1.2rem; margin-bottom: 1rem;">1000€</p>

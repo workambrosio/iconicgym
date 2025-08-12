@@ -33,6 +33,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Image fallback handler (useful for case-sensitive hosts like GitHub Pages)
+    const fallbackImages = document.querySelectorAll('img[data-fallbacks]');
+    fallbackImages.forEach((img) => {
+        const variants = img.getAttribute('data-fallbacks')?.split(',').map(s => s.trim()).filter(Boolean) || [];
+        let idx = 0;
+        img.addEventListener('error', function onErr() {
+            if (idx < variants.length) {
+                img.src = variants[idx] + (variants[idx].includes('?') ? '' : '?v=1');
+                idx += 1;
+            } else {
+                img.removeEventListener('error', onErr);
+            }
+        });
+    });
+
 // Parallax effect for hero section
 function parallaxHero() {
     const hero = document.querySelector('.hero-section');
