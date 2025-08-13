@@ -435,8 +435,6 @@ nav a.active {
     font-family: 'Inter', sans-serif;
 }
 
-/* removed intl-tel-input overrides */
-
 .form-button {
     background-color: var(--cor-preto);
     color: var(--cor-branco);

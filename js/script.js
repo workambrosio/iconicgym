@@ -72,11 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const res = await fetch(appsScriptUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify(payload),
+                    mode: 'no-cors'
                 });
 
-                if (!res.ok) throw new Error('Falha no envio');
-
+                // Com mode: 'no-cors' não dá para verificar res.ok, por isso redirecionamos logo
                 window.location.href = 'obrigado.html';
             } catch (err) {
                 console.error(err);
