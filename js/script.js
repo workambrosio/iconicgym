@@ -69,14 +69,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     message: formData.get('message') || ''
                 };
 
-                const res = await fetch(appsScriptUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload),
-                    mode: 'no-cors'
-                });
+                const body = JSON.stringify(payload);
 
-                // Com mode: 'no-cors' não dá para verificar res.ok, por isso redirecionamos logo
+                // 1) Tenta enviar de forma "fire-and-forget" (rápido) com sendBeacon
+                let sent = false;
+                if (navigator.sendBeacon) {
+                    try {
+                        const blob = new Blob([body], { type: 'application/json' });
+                        sent = navigator.sendBeacon(appsScriptUrl, blob);
+                    } catch (_) { /* ignore */ }
+                }
+
+                // 2) Fallback: fetch com timeout curto e keepalive, para não atrasar o redirect
+                if (!sent) {
+                    try {
+                        await Promise.race([
+                            fetch(appsScriptUrl, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body,
+                                mode: 'no-cors',
+                                keepalive: true
+                            }),
+                            new Promise((resolve) => setTimeout(resolve, 1200))
+                        ]);
+                    } catch (_) { /* ignore */ }
+                }
+
+                // Redirecionar sem esperar a conclusão do Apps Script (evita atrasos de 3-5s)
                 window.location.href = 'obrigado.html';
             } catch (err) {
                 console.error(err);
