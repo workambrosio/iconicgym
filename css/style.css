@@ -56,6 +56,10 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 2rem;
 }
 
+/* Guard rails: ensure images and sections don't overflow on mobile */
+img, video, iframe { max-width: 100%; height: auto; }
+.grid-section, .page-hero, .team-section, .map-section, .form-section, .thank-you-section { overflow: hidden; }
+
 /* --- Header --- */
 header {
     position: fixed;
@@ -456,7 +460,7 @@ nav a.active {
 }
 
 .page-title {
-    font-size: clamp(4rem, 8vw, 8rem);
+    font-size: clamp(3.2rem, 6vw, 6rem);
     margin-bottom: 2rem;
     color: var(--cor-primaria);
 }
@@ -1186,9 +1190,10 @@ td {
     
     .cta-button { padding: 0.6rem 1rem; font-size: 0.85rem; }
     
-    .hero-title {
-        font-size: clamp(3rem, 15vw, 8rem);
-    }
+    .hero-title { font-size: clamp(2.6rem, 12vw, 3.5rem); line-height: 1.05; }
+    .page-title { font-size: clamp(2.4rem, 10vw, 3.2rem); line-height: 1.05; }
+    .grid-title { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+    .hero-subtitle { max-width: 90%; }
     
     .grid-content {
         padding: 2rem;
@@ -1202,7 +1207,7 @@ td {
 @media (max-width: 900px) {
     .menu-toggle { display: inline-block; }
     header .cta-button { display: none; }
-    nav { position: fixed; top: 64px; left: 0; right: 0; background: var(--cor-branco); border-bottom: 1px solid #eee; display: none; padding: 1rem 1.25rem; }
+    nav { position: fixed; top: 56px; left: 0; right: 0; background: var(--cor-branco); border-bottom: 1px solid #eee; display: none; padding: 1rem 1.25rem; }
     nav.open { display: block; }
     nav ul { flex-direction: column; gap: 1rem; }
     .mobile-cta { display: block; }
