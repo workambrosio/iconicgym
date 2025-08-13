@@ -55,17 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const gsMeta = document.querySelector('meta[name="apps-script-url"]');
     const appsScriptUrl = (gsMeta && gsMeta.content) ? gsMeta.content.trim() : '';
     if (form && appsScriptUrl) {
-        // Initialize intl-tel-input if available
-        const phoneInput = form.querySelector('input[name="phone"]');
-        let iti = null;
-        if (phoneInput && window.intlTelInput) {
-            iti = window.intlTelInput(phoneInput, {
-                initialCountry: 'pt',
-                separateDialCode: true,
-                utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.1.1/js/utils.js'
-            });
-        }
-
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
             const submitButton = form.querySelector('button[type="submit"], .form-button');
@@ -76,19 +65,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const payload = {
                     name: formData.get('name') || '',
                     email: formData.get('email') || '',
-                    phone: iti ? iti.getNumber() : (formData.get('phone') || ''),
+                    phone: formData.get('phone') || '',
                     message: formData.get('message') || ''
                 };
 
-                // Usar no-cors para evitar bloqueio do Apps Script em produção (GitHub Pages)
-                await fetch(appsScriptUrl, {
+                const res = await fetch(appsScriptUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload),
-                    mode: 'no-cors'
+                    body: JSON.stringify(payload)
                 });
 
-                // redirecionar sem esperar validação da resposta (Apps Script não expõe res.ok em no-cors)
+                if (!res.ok) throw new Error('Falha no envio');
+
                 window.location.href = 'obrigado.html';
             } catch (err) {
                 console.error(err);
