@@ -65,7 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const payload = {
                     name: formData.get('name') || '',
                     email: formData.get('email') || '',
-                    message: formData.get('phone') || ''
+                    phone: formData.get('phone') || '',
+                    message: formData.get('message') || ''
                 };
 
                 const res = await fetch(appsScriptUrl, {
