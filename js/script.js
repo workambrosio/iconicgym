@@ -50,35 +50,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Desativado: parallax no hero causava deslocamento em desktop em alguns browsers
 
-    // Submissão do(s) formulário(s) para n8n (webhook)
-    const webhookMeta = document.querySelector('meta[name="n8n-webhook-url"]');
-    const n8nWebhookUrl = (webhookMeta && webhookMeta.content) ? webhookMeta.content.trim() : '';
-    const forms = document.querySelectorAll('form[data-n8n="true"]');
-    forms.forEach((form) => {
-        form.addEventListener('submit', async (e) => {
+    // Submissão do formulário para Google Apps Script (JSON)
+    const form = document.getElementById('free-trial-form');
+    const gsMeta = document.querySelector('meta[name="apps-script-url"]');
+    const appsScriptUrl = (gsMeta && gsMeta.content) ? gsMeta.content.trim() : '';
+    if (form && appsScriptUrl) {
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
             const submitButton = form.querySelector('button[type="submit"], .form-button');
             if (submitButton) submitButton.disabled = true;
 
             try {
                 const formData = new FormData(form);
-                // Enviar como form-data para compatibilidade com n8n e evitar preflight
-                formData.append('page', window.location.pathname);
-                if (form.id) formData.append('formId', form.id);
+                const payload = {
+                    name: formData.get('name') || '',
+                    email: formData.get('email') || '',
+                    message: formData.get('phone') || ''
+                };
 
-                if (!n8nWebhookUrl) {
-                    throw new Error('Webhook URL em falta (meta name="n8n-webhook-url").');
-                }
-
-                const res = await fetch(n8nWebhookUrl, {
+                const res = await fetch(appsScriptUrl, {
                     method: 'POST',
-                    body: formData,
-                    mode: 'cors',
-                    cache: 'no-store',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                    mode: 'no-cors'
                 });
 
-                if (!res.ok) throw new Error('Falha no envio.');
-
+                // Com mode: 'no-cors' não dá para verificar res.ok, por isso redirecionamos logo
                 window.location.href = 'obrigado.html';
             } catch (err) {
                 console.error(err);
@@ -87,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (submitButton) submitButton.disabled = false;
             }
         });
-    });
+    }
 
 });
 
