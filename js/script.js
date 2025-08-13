@@ -80,14 +80,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     message: formData.get('message') || ''
                 };
 
-                const res = await fetch(appsScriptUrl, {
+                // Usar no-cors para evitar bloqueio do Apps Script em produção (GitHub Pages)
+                await fetch(appsScriptUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify(payload),
+                    mode: 'no-cors'
                 });
 
-                if (!res.ok) throw new Error('Falha no envio');
-
+                // redirecionar sem esperar validação da resposta (Apps Script não expõe res.ok em no-cors)
                 window.location.href = 'obrigado.html';
             } catch (err) {
                 console.error(err);

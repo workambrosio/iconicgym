@@ -435,6 +435,22 @@ nav a.active {
     font-family: 'Inter', sans-serif;
 }
 
+/* Phone input (intl-tel-input) match style */
+.iti { width: 100%; }
+.iti__flag-container { border: 2px solid var(--cor-texto); border-right: none; height: 100%; }
+.iti__selected-flag { padding: 0 0.75rem; background: var(--cor-cinza-claro); height: 100%; display: flex; align-items: center; }
+.iti__selected-flag:hover { background: #e9e9e9; }
+.iti__country-list { border: 2px solid var(--cor-preto); box-shadow: none; }
+.iti input[type="tel"],
+input[name="phone"] {
+    padding: 1.5rem;
+    border: 2px solid var(--cor-texto);
+    border-left: none; /* junta com o seletor do país */
+    background-color: var(--cor-branco);
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+}
+
 .form-button {
     background-color: var(--cor-preto);
     color: var(--cor-branco);
