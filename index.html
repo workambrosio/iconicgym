@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ICONIC - Home</title>
     <link rel="icon" type="image/png" href="images/logobranco.png">
+    <meta name="n8n-webhook-url" content="https://5873cb01af03.ngrok-free.app/webhook/form-submit">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -56,7 +57,7 @@
                             <p>MEMBROS ATIVOS</p>
                         </div>
                         <div class="stat-item">
-                            <h2>50+</h2>
+                            <h2>+15</h2>
                             <p>AULAS POR SEMANA</p>
                         </div>
                         <div class="stat-item">
@@ -127,7 +128,7 @@
             <div class="container">
                 <h2 class="cta-title">TREINO GRÁTIS</h2>
                 <p class="grid-text">Deixa os teus dados e ganha um treino e apresentação gratuitos. Sem compromissos.</p>
-                <form id="free-trial-form" class="form-container">
+                <form id="free-trial-form" class="form-container" data-n8n="true">
                     <input type="text" name="name" placeholder="NOME COMPLETO" required class="form-input">
                     <input type="email" name="email" placeholder="O TEU MELHOR EMAIL" required class="form-input">
                     <input type="tel" name="phone" placeholder="NÚMERO DE TELEMÓVEL" required class="form-input">

@@ -50,19 +50,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Desativado: parallax no hero causava deslocamento em desktop em alguns browsers
 
-    // Submissão do formulário
-    const form = document.getElementById('free-trial-form');
-    if (form) {
-        form.addEventListener('submit', function(e) {
+    // Submissão do(s) formulário(s) para n8n (webhook)
+    const webhookMeta = document.querySelector('meta[name="n8n-webhook-url"]');
+    const n8nWebhookUrl = (webhookMeta && webhookMeta.content) ? webhookMeta.content.trim() : '';
+    const forms = document.querySelectorAll('form[data-n8n="true"]');
+    forms.forEach((form) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
-            // Simular envio do formulário
-            // Em produção, aqui farias uma requisição AJAX para o servidor
-            
-            // Redirecionar para página de agradecimento
-            window.location.href = 'obrigado.html';
+            const submitButton = form.querySelector('button[type="submit"], .form-button');
+            if (submitButton) submitButton.disabled = true;
+
+            try {
+                const formData = new FormData(form);
+                // Enviar como form-data para compatibilidade com n8n e evitar preflight
+                formData.append('page', window.location.pathname);
+                if (form.id) formData.append('formId', form.id);
+
+                if (!n8nWebhookUrl) {
+                    throw new Error('Webhook URL em falta (meta name="n8n-webhook-url").');
+                }
+
+                const res = await fetch(n8nWebhookUrl, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'cors',
+                    cache: 'no-store',
+                });
+
+                if (!res.ok) throw new Error('Falha no envio.');
+
+                window.location.href = 'obrigado.html';
+            } catch (err) {
+                console.error(err);
+                alert('Não foi possível enviar o formulário. Tenta novamente mais tarde.');
+            } finally {
+                if (submitButton) submitButton.disabled = false;
+            }
         });
-    }
+    });
 
 });
 
