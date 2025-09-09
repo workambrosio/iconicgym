@@ -50,42 +50,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Desativado: parallax no hero causava deslocamento em desktop em alguns browsers
 
-    // Submissão do formulário para Google Apps Script (JSON)
-    const form = document.getElementById('free-trial-form');
+    // Submissão dos formulários para Google Apps Script (JSON)
+    const forms = [
+        { id: 'free-trial-form', redirect: 'obrigado.html' },
+        { id: 'consultation-form', redirect: 'obrigado.html' }
+    ];
+    
     const gsMeta = document.querySelector('meta[name="apps-script-url"]');
     const appsScriptUrl = (gsMeta && gsMeta.content) ? gsMeta.content.trim() : '';
-    if (form && appsScriptUrl) {
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const submitButton = form.querySelector('button[type="submit"], .form-button');
-            if (submitButton) submitButton.disabled = true;
+    
+    forms.forEach(formConfig => {
+        const form = document.getElementById(formConfig.id);
+        if (form && appsScriptUrl) {
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const submitButton = form.querySelector('button[type="submit"], .form-button');
+                if (submitButton) submitButton.disabled = true;
 
-            try {
-                const formData = new FormData(form);
-                const payload = {
-                    name: formData.get('name') || '',
-                    email: formData.get('email') || '',
-                    phone: formData.get('phone') || '',
-                    message: formData.get('message') || ''
-                };
+                try {
+                    const formData = new FormData(form);
+                    const payload = {
+                        name: formData.get('name') || '',
+                        email: formData.get('email') || '',
+                        phone: formData.get('phone') || '',
+                        message: formData.get('message') || '',
+                        consultation_type: formData.get('consultation_type') || ''
+                    };
 
-                const res = await fetch(appsScriptUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload),
-                    mode: 'no-cors'
-                });
+                    const res = await fetch(appsScriptUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload),
+                        mode: 'no-cors'
+                    });
 
-                // Com mode: 'no-cors' não dá para verificar res.ok, por isso redirecionamos logo
-                window.location.href = 'obrigado.html';
-            } catch (err) {
-                console.error(err);
-                alert('Não foi possível enviar o formulário. Tenta novamente mais tarde.');
-            } finally {
-                if (submitButton) submitButton.disabled = false;
-            }
-        });
-    }
+                    // Com mode: 'no-cors' não dá para verificar res.ok, por isso redirecionamos logo
+                    window.location.href = formConfig.redirect;
+                } catch (err) {
+                    console.error(err);
+                    alert('Não foi possível enviar o formulário. Tenta novamente mais tarde.');
+                } finally {
+                    if (submitButton) submitButton.disabled = false;
+                }
+            });
+        }
+    });
 
 });
 

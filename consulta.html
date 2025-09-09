@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ICONIC - Obrigado</title>
+    <title>ICONIC - Marcar Consulta</title>
     <link rel="icon" type="image/png" href="images/logobranco.png">
+    <meta name="apps-script-url" content="https://script.google.com/macros/s/AKfycbz9ljKph5LEAnyADEERdbqkqEM-k7RU8wVBV4dMdAoa2wasrXzw3C8K-sbEeNon-he3yA/exec">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -38,35 +39,44 @@
     <main>
         <section class="page-hero">
             <div class="container">
-                <h1 class="page-title">OBRIGADO!</h1>
-                <p class="page-subtitle">Recebemos os teus dados. Vamos entrar em contacto contigo brevemente para agendarmos o teu treino gratuito.</p>
+                <h1 class="page-title">MARCAR CONSULTA</h1>
+                <p class="page-subtitle">Agenda a tua consulta personalizada e descobre como podemos ajudar-te a atingir os teus objetivos.</p>
             </div>
         </section>
 
-        <section class="thank-you-section">
+        <section class="form-section">
             <div class="container">
-                <div class="thank-you-content">
-                    <div class="thank-you-box">
-                        <h2>O QUE ACONTECE AGORA?</h2>
-                        <div class="steps">
-                            <div class="step">
-                                <span class="step-number">1</span>
-                                <h3>CONTACTO</h3>
-                                <p>Entraremos em contacto contigo nas próximas 24 horas</p>
-                            </div>
-                            <div class="step">
-                                <span class="step-number">2</span>
-                                <h3>AGENDAMENTO</h3>
-                                <p>Agendaremos o teu treino gratuito numa altura conveniente</p>
-                            </div>
-                            <div class="step">
-                                <span class="step-number">3</span>
-                                <h3>EXPERIÊNCIA</h3>
-                                <p>Vive a experiência ICONIC e conhece a nossa equipa</p>
+                <div class="form-container-page">
+                        <form id="consultation-form" class="form-container">
+                        <input type="text" name="name" placeholder="NOME COMPLETO" required class="form-input">
+                        <input type="email" name="email" placeholder="O TEU MELHOR EMAIL" required class="form-input">
+                        <input type="tel" name="phone" placeholder="NÚMERO DE TELEMÓVEL" required class="form-input">
+                        
+                        <!-- Toggle para tipo de consulta -->
+                        <div class="consultation-type-toggle">
+                            <label class="toggle-label">TIPO DE CONSULTA:</label>
+                            <div class="toggle-container">
+                                <input type="radio" id="online" name="consultation_type" value="online">
+                                <label for="online" class="radio-label">
+                                    <span class="radio-custom"></span>
+                                    Online
+                                </label>
+                                
+                                <input type="radio" id="presencial" name="consultation_type" value="presencial" checked>
+                                <label for="presencial" class="radio-label">
+                                    <span class="radio-custom"></span>
+                                    Presencial
+                                </label>
                             </div>
                         </div>
-                        <a href="index.html" class="hero-cta">VOLTAR AO INÍCIO</a>
-                    </div>
+                        
+                        <textarea name="message" placeholder="MENSAGEM (OPCIONAL)" class="form-input" rows="4"></textarea>
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="promo" name="promo" checked>
+                            <label for="promo">Quero receber informações sobre promoções e eventos.</label>
+                        </div>
+                        <button type="submit" class="form-button">MARCAR CONSULTA</button>
+                    </form>
                 </div>
             </div>
         </section>
