@@ -1752,6 +1752,33 @@ input[type="radio"]:checked + .radio-label:hover {
     display: none !important;
 }
 
+/* Add back the card styling for informacoes page */
+.informacoes-page .plans-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--cor-preto);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 0 auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.informacoes-page .schedule-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--cor-preto);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 0 auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.informacoes-page .map-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--cor-preto);
+}
+
 .informacoes-page .plans-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
