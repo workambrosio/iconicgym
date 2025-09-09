@@ -1732,10 +1732,10 @@ input[type="radio"]:checked + .radio-label:hover {
 }
 
 .informacoes-page main > section:not(.page-hero) {
-    background: transparent;
+    background: transparent !important;
 }
 
-/* Informações Page - Plans Section Customization */
+/* Informações Page - Only override backgrounds to remove patterns */
 .informacoes-page .plans-section {
     background: transparent !important;
 }
@@ -1744,32 +1744,12 @@ input[type="radio"]:checked + .radio-label:hover {
     display: none !important;
 }
 
-.informacoes-page .plans-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border: 2px solid var(--cor-preto);
-}
-
-/* Informações Page - Schedule Section Customization */
 .informacoes-page .schedule-section {
     background: transparent !important;
 }
 
 .informacoes-page .schedule-section::before {
     display: none !important;
-}
-
-.informacoes-page .schedule-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border: 2px solid var(--cor-preto);
-}
-
-/* Informações Page - Map Section Customization */
-.informacoes-page .map-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border: 2px solid var(--cor-preto);
 }
 
 .informacoes-page .plans-grid {
