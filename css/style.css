@@ -1836,6 +1836,19 @@ input[type="radio"]:checked + .radio-label:hover {
     color: var(--cor-primaria);
 }
 
+/* Reduce spacing between sections for informacoes page */
+.informacoes-page .plans-section {
+    padding: 2rem 0 !important;
+}
+
+.informacoes-page .schedule-section {
+    padding: 2rem 0 !important;
+}
+
+.informacoes-page .map-section {
+    padding: 2rem 0 !important;
+}
+
 /* Mobile responsiveness for informacoes page */
 @media (max-width: 768px) {
     .informacoes-page .plans-grid {
