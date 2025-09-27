@@ -1,5 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    
+    // Set initial theme
+    if (currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+    
+    // Theme toggle event listener
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            if (newTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+            
+            localStorage.setItem('theme', newTheme);
+        });
+    }
+
     // Scroll suave para as âncoras
     const links = document.querySelectorAll('a[href^="#"]');
 
