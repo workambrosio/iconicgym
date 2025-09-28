@@ -22,8 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             localStorage.setItem('theme', newTheme);
+            
+            // Update Google Maps theme
+            updateGoogleMapsTheme(newTheme);
         });
     }
+    
+    // Initialize Google Maps theme
+    updateGoogleMapsTheme(currentTheme);
 
     // Scroll suave para as âncoras
     const links = document.querySelectorAll('a[href^="#"]');
@@ -122,6 +128,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+// Function to update Google Maps theme
+function updateGoogleMapsTheme(theme) {
+    const mapIframes = document.querySelectorAll('iframe[src*="google.com/maps"]');
+    
+    mapIframes.forEach(iframe => {
+        const currentSrc = iframe.src;
+        const url = new URL(currentSrc);
+        
+        // Remove existing theme parameter
+        url.searchParams.delete('theme');
+        
+        // Add dark theme parameter if dark mode
+        if (theme === 'dark') {
+            url.searchParams.set('theme', 'dark');
+        }
+        
+        // Update iframe src if it changed
+        const newSrc = url.toString();
+        if (currentSrc !== newSrc) {
+            iframe.src = newSrc;
+        }
+    });
+}
 
 // Função para alternar a história completa do testemunho
 function toggleFullStory(element) {

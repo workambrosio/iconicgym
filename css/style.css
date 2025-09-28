@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-    --cor-primaria: #2E7D32;
+    --cor-primaria: #bee0c7;
     --cor-preto: #000000;
     --cor-branco: #FFFFFF;
     --cor-cinza-claro: #F5F5F5;
@@ -12,7 +12,7 @@
 
 /* Dark mode variables */
 [data-theme="dark"] {
-    --cor-primaria: #2E7D32;
+    --cor-primaria: #bee0c7;
     --cor-preto: #FFFFFF;
     --cor-branco: #282828;
     --cor-cinza-claro: #1a1a1a;
@@ -199,7 +199,13 @@ nav a {
 
 /* Additional dark mode styles */
 [data-theme="dark"] .page-hero {
-    background: linear-gradient(135deg, var(--cor-branco) 0%, #1a1a1a 100%);
+    background: #bee0c6;
+}
+
+/* Force dark-mode hero background to solid green on all pages except home */
+[data-theme="dark"] :not(.home) .page-hero,
+[data-theme="dark"] body:not(.home) .page-hero {
+    background: #bee0c6 !important;
 }
 
 [data-theme="dark"] .grid-section {
@@ -250,7 +256,7 @@ nav a.active {
 
 .cta-button {
     background-color: var(--cor-primaria);
-    color: var(--cor-branco);
+    color: #000000;
     padding: 1rem 2rem;
     text-decoration: none;
     font-family: 'Oswald', sans-serif;
@@ -261,6 +267,7 @@ nav a.active {
 
 .cta-button:hover {
     background-color: var(--cor-preto);
+    color: var(--cor-branco);
 }
 
 /* --- Hero Section --- */
@@ -291,7 +298,7 @@ main > section:not(.hero-section) {
 }
 
 /* Aplicar fundo branco apenas às seções que precisam sobrepor o hero */
-main > section:not(.hero-section):not(.info-section) {
+main > section:not(.hero-section):not(.info-section):not(.page-hero) {
     background-color: var(--cor-branco);
 }
 
@@ -481,6 +488,11 @@ main > section:not(.hero-section):not(.info-section) {
     text-align: center;
 }
 
+/* add space below small lead text before CTA button on internal pages */
+.cta-section .grid-text {
+    margin-bottom: 1.25rem;
+}
+
 /* --- Home: Features & Map Teaser --- */
 .features-section {
     padding: 5rem 0 0;
@@ -572,6 +584,13 @@ main > section:not(.hero-section):not(.info-section) {
     gap: 1rem;
 }
 
+/* add space between lead text and form on free-trial section */
+.cta-section .form-container::before {
+    content: '';
+    display: block;
+    height: 10px;
+}
+
 .form-input {
     padding: 1.5rem;
     border: 2px solid var(--cor-texto);
@@ -599,7 +618,7 @@ main > section:not(.hero-section):not(.info-section) {
 /* --- Page Sections --- */
 .page-hero {
     padding: 10rem 0 5rem;
-    background: linear-gradient(135deg, var(--cor-preto) 0%, #1a1a1a 100%);
+    background: #282828;
     color: var(--cor-branco);
     text-align: center;
 }
@@ -1033,7 +1052,7 @@ td {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, rgba(0,0,0,0.7), rgba(46,125,50,0.8));
+    background: linear-gradient(45deg, rgba(0,0,0,0.7), rgba(190,224,198,0.8));
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1150,7 +1169,7 @@ td {
 
 .cta-button-small {
     background-color: var(--cor-primaria);
-    color: var(--cor-branco);
+    color: #000000;
     padding: 0.8rem 1.5rem;
     text-decoration: none;
     font-family: 'Oswald', sans-serif;
@@ -1162,7 +1181,7 @@ td {
 
 .cta-button-small:hover {
     background-color: var(--cor-branco);
-    color: var(--cor-preto);
+    color: #000000;
 }
 
 /* --- Form Page --- */
@@ -1664,7 +1683,7 @@ input[type="radio"]:checked + .radio-label:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="gym-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%232E7D32" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23gym-pattern)"/></svg>');
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="gym-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23bee0c7" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23gym-pattern)"/></svg>');
     opacity: 0.3;
     z-index: 0;
 }
@@ -1716,7 +1735,7 @@ input[type="radio"]:checked + .radio-label:hover {
     align-items: center;
     padding: 0.8rem 1rem;
     margin-bottom: 0.5rem;
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(248, 248, 248, 0.9));
+    background: var(--cor-primaria);
     backdrop-filter: blur(5px);
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -1732,11 +1751,12 @@ input[type="radio"]:checked + .radio-label:hover {
     font-family: 'Oswald', sans-serif;
     font-weight: 600;
     font-size: 0.9rem;
+    color: #000000;
 }
 
 .schedule-time {
     font-weight: 500;
-    color: var(--cor-primaria);
+    color: #000000;
     font-size: 0.9rem;
 }
 
@@ -1761,7 +1781,7 @@ input[type="radio"]:checked + .radio-label:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="fitness-pattern" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><rect x="12" y="8" width="6" height="2" fill="%232E7D32" opacity="0.1"/><rect x="10" y="8" width="2" height="6" fill="%232E7D32" opacity="0.1"/><rect x="18" y="8" width="2" height="6" fill="%232E7D32" opacity="0.1"/><circle cx="15" cy="20" r="2" fill="%232E7D32" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23fitness-pattern)"/></svg>');
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="fitness-pattern" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><rect x="12" y="8" width="6" height="2" fill="%23bee0c7" opacity="0.1"/><rect x="10" y="8" width="2" height="6" fill="%23bee0c7" opacity="0.1"/><rect x="18" y="8" width="2" height="6" fill="%23bee0c7" opacity="0.1"/><circle cx="15" cy="20" r="2" fill="%23bee0c7" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23fitness-pattern)"/></svg>');
     opacity: 0.4;
     z-index: 0;
 }
@@ -1852,7 +1872,7 @@ input[type="radio"]:checked + .radio-label:hover {
 
 
 .informacoes-page .page-hero {
-    background: linear-gradient(135deg, var(--cor-preto) 0%, #1a1a1a 100%);
+    background: #282828;
 }
 
 .informacoes-page main > section:not(.page-hero) {
@@ -1916,11 +1936,11 @@ input[type="radio"]:checked + .radio-label:hover {
 }
 
 [data-theme="dark"] .page-title {
-    color: var(--cor-primaria);
+    color: #FFFFFF;
 }
 
 [data-theme="dark"] .page-subtitle {
-    color: #FFFFFF;
+    color: #000000;
 }
 
 [data-theme="dark"] .hero-content {
@@ -1929,12 +1949,12 @@ input[type="radio"]:checked + .radio-label:hover {
 
 [data-theme="dark"] .hero-cta {
     background-color: var(--cor-primaria);
-    color: #FFFFFF;
+    color: #000000;
 }
 
 [data-theme="dark"] .hero-cta:hover {
     background-color: #FFFFFF;
-    color: var(--cor-preto);
+    color: #000000;
 }
 
 /* Keep highlight text green in dark mode */
@@ -2096,4 +2116,78 @@ input[type="radio"]:checked + .radio-label:hover {
     .informacoes-page .plan-item:nth-child(4) { /* Cartão 10 Senhas */
         order: 4;
     }
+}
+
+/* --- Dark mode form readability and CTA adjustments --- */
+/* Ensure form fields and controls have white text in dark mode */
+[data-theme="dark"] .form-input {
+    color: #FFFFFF;
+}
+
+[data-theme="dark"] .form-input::placeholder {
+    color: #FFFFFF;
+    opacity: 0.7;
+}
+
+[data-theme="dark"] .checkbox-container label,
+[data-theme="dark"] .toggle-label,
+[data-theme="dark"] .radio-label {
+    color: #FFFFFF;
+}
+
+/* Checked radio label should keep white text on green background in dark mode */
+[data-theme="dark"] input[type="radio"]:checked + .radio-label {
+    color: #FFFFFF !important;
+}
+
+/* Make form submit buttons green across the site */
+.form-button {
+    background-color: var(--cor-primaria);
+    color: #000000;
+}
+
+.form-button:hover {
+    background-color: var(--cor-primaria);
+    color: #000000;
+}
+
+/* --- Informações specific dark-mode fixes --- */
+/* Ensure hero gradient matches other pages in dark mode */
+[data-theme="dark"] .informacoes-page .page-hero {
+    background: #bee0c6 !important;
+}
+
+/* Keep schedule squares white but force text to black in dark mode */
+[data-theme="dark"] .informacoes-page .schedule-item,
+[data-theme="dark"] .informacoes-page .schedule-item .schedule-day,
+[data-theme="dark"] .informacoes-page .schedule-item .schedule-time {
+    color: #000000 !important;
+}
+
+/* Fix only schedule items text to be black in dark mode on informações page */
+[data-theme="dark"] .informacoes-page .schedule-note p,
+[data-theme="dark"] .informacoes-page .schedule-note strong {
+    color: #000000 !important;
+}
+
+/* Map address should be green */
+.map-meta span {
+    color: var(--cor-primaria);
+}
+
+[data-theme="dark"] .informacoes-page .map-meta span {
+    color: var(--cor-primaria) !important;
+}
+
+/* Keep titles green in dark mode */
+[data-theme="dark"] .informacoes-page .plans-card h2,
+[data-theme="dark"] .informacoes-page .schedule-card h2,
+[data-theme="dark"] .informacoes-page .map-card h2,
+[data-theme="dark"] .informacoes-page .schedule-column h3 {
+    color: var(--cor-primaria) !important;
+}
+
+/* Keep map link green */
+[data-theme="dark"] .informacoes-page .map-meta a {
+    color: var(--cor-primaria) !important;
 }
