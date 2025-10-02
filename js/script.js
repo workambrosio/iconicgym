@@ -1,35 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // Initialize theme from localStorage or default to dark
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateGoogleMapsTheme(savedTheme);
+
     // Theme toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    
-    // Set initial theme
-    if (currentTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    }
-    
-    // Theme toggle event listener
+    const themeToggle = document.querySelector('.theme-toggle');
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
-            if (newTheme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            } else {
-                document.documentElement.removeAttribute('data-theme');
-            }
-            
+            document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-            
-            // Update Google Maps theme
             updateGoogleMapsTheme(newTheme);
         });
     }
-    
-    // Initialize Google Maps theme
-    updateGoogleMapsTheme(currentTheme);
 
     // Scroll suave para as âncoras
     const links = document.querySelectorAll('a[href^="#"]');
