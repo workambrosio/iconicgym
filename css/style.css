@@ -116,7 +116,7 @@ header {
 }
 
 [data-theme="dark"] .logo {
-    content: url('../images/logopreto.jpeg');
+    content: url('../images/logopreto.png');
 }
 
 [data-theme="light"] .logo {
