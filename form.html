@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ICONIC - Treino Grátis</title>
     <link rel="icon" type="image/png" href="images/icon.png">
-    <meta name="apps-script-url" content="https://script.google.com/macros/s/AKfycbz9ljKph5LEAnyADEERdbqkqEM-k7RU8wVBV4dMdAoa2wasrXzw3C8K-sbEeNon-he3yA/exec">
+    <meta name="apps-script-url" content="https://script.google.com/macros/s/AKfycbwo_oVmuUrc8FlUnv5IyWVq1K53Sz6xpAvc7EGUNlQqheyBv9SZsbnr5pxS7iQ7isdcKA/exec">
     <script>
         // Load theme immediately to prevent flash
         const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -71,6 +71,7 @@
             <div class="container">
                 <div class="form-container-page">
                         <form id="free-trial-form" class="form-container">
+                        <input type="hidden" name="form_type" value="Treino">
                         <input type="text" name="name" placeholder="NOME COMPLETO" required class="form-input">
                         <input type="email" name="email" placeholder="O TEU MELHOR EMAIL" required class="form-input">
                         <input type="tel" name="phone" placeholder="NÚMERO DE TELEMÓVEL" required class="form-input">

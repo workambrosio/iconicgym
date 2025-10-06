@@ -87,13 +87,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 try {
                     const formData = new FormData(form);
+                    // Build a base payload with known fields for backward compatibility
                     const payload = {
+                        form_type: formData.get('form_type') || '',
                         name: formData.get('name') || '',
                         email: formData.get('email') || '',
                         phone: formData.get('phone') || '',
                         message: formData.get('message') || '',
-                        consultation_type: formData.get('consultation_type') || ''
+                        consultation_type: formData.get('consultation_type') || '',
+                        promo: formData.get('promo') ? 'true' : 'false'
                     };
+
+                    // Include any additional fields dynamically (future-proof)
+                    for (const [key, value] of formData.entries()) {
+                        if (!(key in payload)) {
+                            payload[key] = value ?? '';
+                        }
+                    }
 
                     const res = await fetch(appsScriptUrl, {
                         method: 'POST',
